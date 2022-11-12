@@ -1045,7 +1045,7 @@ contract Solverified is Context, IERC20, Ownable, ReentrancyGuard {
      */
     string private constant _NAME = "Solverified Audit Protocol Token";
     string private constant _SYMBOL = "1SAP";
-    uint8 private constant _DECIMALS = 18;
+    uint8 private constant _DECIMALS = 9;
     
     /**
      * @dev Percentage of the static reflection fee.
@@ -1083,12 +1083,12 @@ contract Solverified is Context, IERC20, Ownable, ReentrancyGuard {
      * @dev The maximum transaction amount to minimize and break the impact of 
      * Whale actions.
      */       
-    uint256 public _maxTxAmount = 1e6 * 10**_DECIMALS;
+    uint256 public _maxTxAmount = 1e12 * 10**_DECIMALS;
     
     /**
      * @dev The number of tokens sell, to add to the liquidity.
      */     
-    uint256 public numTokensSellToAddToLiquidity = 1e5 * 10**_DECIMALS;
+    uint256 public numTokensSellToAddToLiquidity = 1e10 * 10**_DECIMALS;
     
     event SwapAndLiquifyEnabledUpdated(bool enabled);
     event LiquidityAdded(uint256 tokenAmount, uint256 ethAmount);
@@ -1797,11 +1797,11 @@ contract Solverified is Context, IERC20, Ownable, ReentrancyGuard {
      * 
      * Requirements:
      *
-     * The new amount must be less than or equal to one million.
+     * The new amount must be less than or equal to one trillion.
      */   
     function setNumTokensSellToAddToLiquidity(uint256 newAmount) external onlyOwner() {
-        require(newAmount <= 1e6 * 10**_DECIMALS, 
-            "ERC20: the amount must be lesser than or equal to one million."
+        require(newAmount <= 1e12 * 10**_DECIMALS, 
+            "ERC20: the amount must be lesser than or equal to one trillion."
         );      
         numTokensSellToAddToLiquidity = newAmount;
     }
@@ -1812,12 +1812,12 @@ contract Solverified is Context, IERC20, Ownable, ReentrancyGuard {
      * 
      * Requirements:
      *
-     * The new amount must be greater than or equal to one million to avoid misuse 
+     * The new amount must be greater than or equal to one trillion to avoid misuse 
      * of the function.
      */      
     function setMaxTxAmount(uint256 newAmount) external onlyOwner() {
-        require(newAmount >= 1e6 * 10**_DECIMALS, 
-            "ERC20: the amount must be greater than or equal to one million."
+        require(newAmount >= 1e12 * 10**_DECIMALS, 
+            "ERC20: the amount must be greater than or equal to one trillion."
         );        
         _maxTxAmount = newAmount;
     }
