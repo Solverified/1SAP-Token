@@ -1800,7 +1800,7 @@ contract Solverified is Context, IERC20, Ownable, ReentrancyGuard {
      * The new amount must be less than or equal to one trillion.
      */   
     function setNumTokensSellToAddToLiquidity(uint256 newAmount) external onlyOwner() {
-        require(newAmount <= 1e12 * 10**_DECIMALS, 
+        require(newAmount <= 1e10 * 10**_DECIMALS, 
             "ERC20: the amount must be lesser than or equal to one trillion."
         );      
         numTokensSellToAddToLiquidity = newAmount;
